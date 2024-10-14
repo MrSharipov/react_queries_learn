@@ -9,6 +9,11 @@ const Posts = [
     title: 'Post 2: lorem ipsum',
     userId: 21,
   },
+  {
+    id: 3,
+    title: 'My First post',
+    userId: 21,
+  },
 ];
 
 const Users = [

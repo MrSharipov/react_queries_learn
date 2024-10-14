@@ -24,7 +24,7 @@ export default function Post({ id }) {
   return (
     <div>
       <h1>
-        Post {postsQuery.data.id} <br />
+        Post ID: {postsQuery.data.id} <br />
         <small>
           User:
           {usersQuery.isLoading

@@ -26,7 +26,9 @@ function App() {
       <h1 className='app'>TanStack Query</h1>
       <button onClick={() => setCurrentPage(<PostList1 />)}> Post 1</button>
       <button onClick={() => setCurrentPage(<PostList2 />)}> Post 2</button>
-      <button onClick={() => setCurrentPage(<Post id='1' />)}> Post</button>
+      <button onClick={() => setCurrentPage(<Post id='3' />)}>
+        First post
+      </button>
       <br />
       {currentPage}
     </div>
