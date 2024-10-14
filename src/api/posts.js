@@ -14,7 +14,7 @@ const Posts = [
     title: 'My First post',
     userId: 21,
   },
-];
+]
 
 const Users = [
   {
@@ -25,20 +25,30 @@ const Users = [
     id: 21,
     name: 'John Deep',
   },
-];
+]
 
 export function getPosts() {
-  return new Promise((resolve) => setTimeout(() => resolve(Posts), 1000));
+  return new Promise((resolve) => setTimeout(() => resolve(Posts), 1000))
 }
 
 export function getPostById(id) {
   return new Promise((resolve) =>
     setTimeout(() => resolve(Posts.find((p) => p.id == id)), 1000)
-  );
+  )
 }
 
 export function getUserById(id) {
   return new Promise((resolve) =>
     setTimeout(() => resolve(Users.find((p) => p.id == id)), 1000)
-  );
+  )
+}
+
+export function createPost(data) {
+  const id = crypto.randomUUID()
+  return new Promise((resolve) =>
+    setTimeout(() => {
+      Posts.push({ id, title: data.title, userId: 12 })
+      resolve(getPostById(id))
+    }, 1000)
+  )
 }
