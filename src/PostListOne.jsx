@@ -5,7 +5,6 @@ export default function PostList1() {
   const postsQuery = useQuery({
     queryKey: ['posts'],
     queryFn: getPosts,
-    refetchInterval: 1000,
   });
 
   console.log(postsQuery.fetchStatus);

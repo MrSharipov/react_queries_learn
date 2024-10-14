@@ -2,6 +2,7 @@ import './App.css';
 import { useState } from 'react';
 import PostList1 from './PostListOne';
 import PostList2 from './PostListTwo';
+import Post from './Post';
 
 const Posts = [
   {
@@ -25,6 +26,7 @@ function App() {
       <h1 className='app'>TanStack Query</h1>
       <button onClick={() => setCurrentPage(<PostList1 />)}> Post 1</button>
       <button onClick={() => setCurrentPage(<PostList2 />)}> Post 2</button>
+      <button onClick={() => setCurrentPage(<Post id='1' />)}> Post</button>
       <br />
       {currentPage}
     </div>
