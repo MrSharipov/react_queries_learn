@@ -1,5 +1,7 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import './App.css';
+import { useState } from 'react';
+import PostList1 from './PostListOne';
+import PostList2 from './PostListTwo';
 
 const Posts = [
   {
@@ -12,44 +14,19 @@ const Posts = [
   },
 ];
 
+// /posts => ['posts']
+// /posts/1 => ['posts', post.id]
+// /posts?authorId=1 => ['posts', {authorId: 1}]
+// /posts/2/comments => ['posts', post.id, 'comments']
 function App() {
-  const queryClient = useQueryClient();
-  const postsQuery = useQuery({
-    queryKey: ['posts'],
-    queryFn: () => wait(1000).then(() => [...Posts]),
-    // queryFn: ()=> Promise.reject('Error occured!!!!')
-  });
-
-  const newPostQuery = useMutation({
-    mutationFn: (title) => {
-      return wait(1000).then(() =>
-        Posts.push({ id: crypto.randomUUID(), title })
-      );
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries(['posts']);
-    },
-  });
-
-  if (postsQuery.isLoading) {
-    return <p>Loading...</p>;
-  }
-
-  if (postsQuery.error) {
-    return <pre>{JSON.stringify(postsQuery.error)}</pre>;
-  }
-
+  const [currentPage, setCurrentPage] = useState(<PostList1 />);
   return (
     <div>
       <h1 className='app'>TanStack Query</h1>
-      {postsQuery.data.map((post) => (
-        <div key={post.id}>{post.title}</div>
-      ))}
-      <button
-        disabled={newPostQuery.isLoading}
-        onClick={() => newPostQuery.mutate('New Post')}>
-        Add new post
-      </button>
+      <button onClick={() => setCurrentPage(<PostList1 />)}> Post 1</button>
+      <button onClick={() => setCurrentPage(<PostList2 />)}> Post 2</button>
+      <br />
+      {currentPage}
     </div>
   );
 }
